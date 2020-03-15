@@ -11,7 +11,8 @@ for (x,target) in zip(x,y):
 	
 	pred=nn.predict(x) [0][0]
 	step= 1 if pred>0.5 else 0
-	print("[INFO] data={}, ground-truth={}, pred={:.4f}, step={}".format(x, target[0], pred, step))
+	print("[INFO] data={}, ground-truth={}, pred={:.4f}, step={}".format(
+x, target[0], pred, step))
 	
 
 
