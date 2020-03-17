@@ -32,30 +32,35 @@ smallblur=np.ones((7,7),dtype="float")*(1/(7*7))
 largeblur=np.ones((7,7),dtype="float")*(1/(21*21))
 
 sharpen=np.array(([0,-1,0],
-  								[-1,5,-1],
-  								[0,-1,0]),dtype="int")
+  		  [-1,5,-1],
+  		  [0,-1,0]),dtype="int")
 
 laplacian=np.array(([0,1,0],
-									[1,-4,1],
-									[0,1,0]),dtype="int")
+		    [1,-4,1],
+		    [0,1,0]),dtype="int")
 
 sobelX=np.array((
-							   [-1,0,1],
-							   [0,0,0],
-							   [-2,0,2]), dtype="int")		
+		[-1,0,1],
+		[0,0,0],
+		[-2,0,2]), dtype="int")		
 							   
 sobelY=np.array((
-							   [-1,0,-2],
-							   [0,0,0],
-							   [1,0,2]), dtype="int")
+		[-1,0,-2],
+		[0,0,0],
+		[1,0,2]), dtype="int")
 
 emboss=np.array((
-								[-2,-1,0],
-								[-1,0,1],
-								[0,1,2]),dtype="int")
+		[-2,-1,0],
+		[-1,0,1],
+		[0,1,2]),dtype="int")
 								
-kernalbank=(("smallblur",smallblur),                                    ("largeblur",largeblur),                                      ("sharpen",sharpen),                                        ("laplacian",laplacian),                                     ("sobelX",sobelX),                                            ("sobelY",sobelY),
-					   ("emboss",emboss))
+kernalbank=(("smallblur",smallblur),
+            ("largeblur",largeblur),                                      
+            ("sharpen",sharpen),                                        
+            ("laplacian",laplacian),                                     
+            ("sobelX",sobelX),                                            
+            ("sobelY",sobelY),
+	    ("emboss",emboss))
 
 image=cv2.imread(args["input"])
 gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -65,7 +70,8 @@ for (kernalname,k) in kernalbank:
 	convolveout=conv(gray,k)
 	opencvout=cv2.filter2D(gray,-1,k)
 	
-	cv2.imwrite("original.png",gray)
-	cv2.imwrite("{}cv2.png".format(kernalname),opencvout)
-	cv2.imwrite("{}convol.png".format(kernalname),convolveout)
-	
+	cv2.imshow("original",gray)
+	cv2.imshow("{}opencv".format(kernalname),opencvout)
+	cv2.imshow("{}convolution".format(kernalname),convolveout)
+	cv2.waitkey(0)
+        cv2.destroyAllWindows()
