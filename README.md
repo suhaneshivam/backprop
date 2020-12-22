@@ -12,3 +12,4 @@ Here i have provided a broad overview of backpropagation however program impleme
 where this process is applied to XOR function and MNSIT dataset is also covered.I hope you will get to learn a lot from
 asas a new comer. 
 ne
+##demo 
